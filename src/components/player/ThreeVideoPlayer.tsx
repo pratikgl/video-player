@@ -52,6 +52,8 @@ export default function ThreeVideoPlayer() {
     video.crossOrigin = "anonymous";
     video.loop = false;
     video.muted = true;
+    video.playsInline = true;
+    video.preload = "auto";
 
     videoController.setVideo(video);
     videoController.startLoop();
