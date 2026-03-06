@@ -1,7 +1,13 @@
+import { skipController } from "./skipController";
+
 type Listener = (time: number) => void;
+
+const SKIP_OFFSET = 0.01;
+const PRE_SKIP = 0.1;
 
 class VideoController {
   video: HTMLVideoElement | null = null;
+  lastSkippedSegmentEnd: number | null = null;
   listeners: Listener[] = [];
 
   setVideo(video: HTMLVideoElement) {
@@ -43,6 +49,23 @@ class VideoController {
     const loop = () => {
       if (this.video) {
         const time = this.video.currentTime;
+
+        const segments = skipController.getSegments();
+
+        for (const seg of segments) {
+          if (time >= seg.start - PRE_SKIP && time <= seg.end) {
+            if (this.lastSkippedSegmentEnd !== seg.end) {
+              this.lastSkippedSegmentEnd = seg.end;
+              this.video.currentTime = seg.end + SKIP_OFFSET; // with some offset
+            }
+
+            break;
+          }
+        }
+        if (!segments.some((s) => time >= s.start && time <= s.end)) {
+          this.lastSkippedSegmentEnd = null;
+        }
+
         this.listeners.forEach((l) => l(time));
       }
 

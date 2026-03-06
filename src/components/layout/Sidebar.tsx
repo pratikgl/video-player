@@ -9,8 +9,6 @@ export default function Sidebar() {
   const [padding, setPadding] = useState<number[]>([30]);
   const [rounding, setRounding] = useState<number[]>([30]);
 
-  console.log(padding, rounding);
-
   return (
     <div className="w-[350px] border-r border-gray-200 p-4 flex flex-col gap-6 pb-[150px]">
       <h2 className="text-lg font-semibold">Transcript</h2>
