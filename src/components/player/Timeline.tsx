@@ -21,7 +21,7 @@ export default function Timeline() {
   };
 
   return (
-    <div className="w-[700px] flex items-center gap-4">
+    <div className="w-[900px] flex items-center gap-4">
       <button
         onClick={() => videoController.toggle()}
         className="px-3 py-1 bg-black text-white rounded"

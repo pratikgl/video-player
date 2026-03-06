@@ -5,8 +5,8 @@ import * as THREE from "three";
 import { videoController } from "@/lib/videoController";
 import { playerController } from "@/lib/playerController";
 
-const WIDTH = 700;
-const HEIGHT = 400;
+const WIDTH = 900;
+const HEIGHT = 500;
 
 export default function ThreeVideoPlayer() {
   const mountRef = useRef<HTMLDivElement | null>(null);
@@ -36,7 +36,7 @@ export default function ThreeVideoPlayer() {
     };
   }, []);
 
-  return <div ref={mountRef} className="w-[700px] h-[400px] overflow-hidden" />;
+  return <div ref={mountRef} className="w-[900px] h-[500px] overflow-hidden" />;
 }
 
 /* ---------------------------------- */
