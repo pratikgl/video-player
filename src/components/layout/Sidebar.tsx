@@ -21,34 +21,43 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="w-[350px] border-r border-gray-200 p-4 flex flex-col gap-6 pb-[150px]">
-      <h2 className="text-lg font-semibold">Transcript</h2>
-
-      <div className="flex-1 overflow-y-auto">
+    <div className="w-[350px] border-r border-gray-200 p-9 flex flex-col gap-20 pb-[150px]">
+      <div className="flex-1 pt-5 overflow-y-auto">
+        <h2 className="text-lg pb-3 font-semibold">Transcript</h2>
         <Transcript />
       </div>
 
       <div className="space-y-6">
         <div>
           <label className="text-sm">Padding</label>
-          <Slider
-            max={100}
-            step={1}
-            className="mx-auto py-3 w-full max-w-xs"
-            value={padding}
-            onValueChange={handlePaddingChange}
-          />
+          <div className="flex text-[14px] gap-3">
+            <Slider
+              max={100}
+              step={1}
+              className="mx-auto py-3 w-full max-w-xs"
+              value={padding}
+              onValueChange={handlePaddingChange}
+            />
+            <label className="flex w-[30px] justify-center h-[30px] p-1 bg-gray-50 rounded-sm">
+              {padding}
+            </label>
+          </div>
         </div>
 
         <div>
           <label className="text-sm">Rounding</label>
-          <Slider
-            max={100}
-            step={1}
-            className="mx-auto py-3 w-full max-w-xs"
-            value={rounding}
-            onValueChange={handleRoundingChange}
-          />
+          <div className="flex text-[14px] gap-3">
+            <Slider
+              max={100}
+              step={1}
+              className="mx-auto py-3 w-full max-w-xs"
+              value={rounding}
+              onValueChange={handleRoundingChange}
+            />
+            <label className="flex w-[30px] justify-center h-[30px] p-1 bg-gray-50 rounded-sm">
+              {rounding}
+            </label>
+          </div>
         </div>
       </div>
     </div>
