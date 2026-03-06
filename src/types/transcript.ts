@@ -9,3 +9,5 @@ export interface Transcript {
   text: string;
   words: Word[];
 }
+
+export type Segment = { start: number; end: number };
