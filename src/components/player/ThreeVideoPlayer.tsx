@@ -99,7 +99,7 @@ function createVideoMesh(videoUrl: string) {
   video.src = videoUrl;
   video.crossOrigin = "anonymous";
   video.loop = false;
-  video.muted = true;
+  video.muted = false;
   video.playsInline = true;
   video.preload = "auto";
 
