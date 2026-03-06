@@ -12,6 +12,15 @@ class VideoController {
 
   setVideo(video: HTMLVideoElement) {
     this.video = video;
+
+    // Notify listeners once metadata (including duration) is available
+    const onMetadata = () => {
+      this.listeners.forEach((l) => l(this.video?.currentTime ?? 0));
+    };
+
+    video.addEventListener("loadedmetadata", onMetadata);
+    // Also covers cases where duration changes (e.g. HLS streams)
+    video.addEventListener("durationchange", onMetadata);
   }
 
   play() {
@@ -24,7 +33,6 @@ class VideoController {
 
   toggle() {
     if (!this.video) return;
-
     if (this.video.paused) this.video.play();
     else this.video.pause();
   }
@@ -38,11 +46,21 @@ class VideoController {
   }
 
   getDuration() {
-    return this.video?.duration ?? 0;
+    const dur = this.video?.duration;
+    // Return 0 instead of NaN when metadata hasn't loaded yet
+    return Number.isFinite(dur) ? dur! : 0;
+  }
+
+  isPlaying() {
+    return this.video ? !this.video.paused : false;
   }
 
   subscribe(listener: Listener) {
     this.listeners.push(listener);
+    // Return unsubscribe so consumers can clean up (e.g. React useEffect)
+    return () => {
+      this.listeners = this.listeners.filter((l) => l !== listener);
+    };
   }
 
   startLoop() {

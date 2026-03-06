@@ -21,13 +21,13 @@ export default function Sidebar() {
   };
 
   return (
-    <div className="w-[350px] border-r border-gray-200 p-9 flex flex-col gap-20 pb-[150px]">
-      <div className="flex-1 pt-5 overflow-y-auto">
-        <h2 className="text-lg pb-3 font-semibold">Transcript</h2>
+    <div className="w-[350px] border-r border-gray-200 p-9 flex flex-col pb-[80px]">
+      <h2 className="text-lg pb-5 font-semibold">Transcript</h2>
+      <div className="flex-1 overflow-y-auto">
         <Transcript />
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-4 pt-15">
         <div>
           <label className="text-sm">Padding</label>
           <div className="flex text-[14px] gap-3">

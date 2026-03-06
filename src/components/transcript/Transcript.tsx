@@ -5,11 +5,12 @@ import { useEffect, useRef, useState } from "react";
 import { videoController } from "@/lib/videoController";
 import { skipController } from "@/lib/skipController";
 import TextSlashIcon from "../ui/TextSlashIcon";
+import { Word } from "@/types/transcript";
 
 export default function Transcript() {
   const containerRef = useRef<HTMLDivElement>(null);
   const activeWordRef = useRef<Element | null>(null); // ✅ track currently highlighted word
-  const [words, setWords] = useState<any[]>([]);
+  const [words, setWords] = useState<Word[]>([]);
   const [selectionPos, setSelectionPos] = useState<{
     x: number;
     y: number;
